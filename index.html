@@ -1,188 +1,72 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniWatch - Главная страница</title>
-    <link rel="stylesheet" href="static/css/index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AniWatch.ru — Смотри аниме онлайн</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<div class="container">
+    <!-- ШАПКА -->
     <header>
-        <h1 class="logo">AniWatch</h1>
-        <p class="tagline">Лучшие аниме сериалы в одном месте</p>
+        <div class="logo">
+            <i class="fas fa-play-circle"></i> Ani<span>Watch</span>.ru
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Поиск аниме..." />
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
     </header>
 
-    <div class="search-container">
-        <input type="text" class="search-input" id="searchInput"
-               placeholder="Введите название аниме...">
-        <button class="search-btn" id="searchBtn">Поиск</button>
-    </div>
+    <!-- ОСНОВНАЯ ЧАСТЬ -->
+    <main class="container">
+        <!-- Последние релизы -->
+        <section>
+            <div class="section-title">
+                <i class="fas fa-fire"></i> Последние релизы
+            </div>
+            <div id="latestGrid" class="anime-grid"></div>
+        </section>
 
-    <main>
-        <div class="anime-grid" id="animeGrid">
-            <!-- Карточки аниме будут добавлены через JavaScript -->
+        <!-- Случайные релизы -->
+        <section>
+            <div class="section-title">
+                <i class="fas fa-random"></i> Случайные тайтлы
+            </div>
+            <div id="randomGrid" class="anime-grid"></div>
+        </section>
+
+        <!-- Все релизы -->
+        <section>
+            <div class="section-title">
+                <i class="fas fa-list-ul"></i> Все релизы
+            </div>
+            <div id="allGrid" class="anime-grid"></div>
+        </section>
+
+        <!-- Лоадер -->
+        <div id="loader" class="loader">
+            <i class="fas fa-spinner fa-pulse"></i>
+            Загрузка аниме...
         </div>
+
+        <!-- ПЛЕЕР -->
+        <section id="playerSection" class="player-section">
+            <h2 id="playerTitle">Название аниме</h2>
+            <div id="episodeButtons" class="episode-list"></div>
+            <div class="video-container">
+                <iframe id="videoFrame" src="" allowfullscreen></iframe>
+            </div>
+            <p class="player-source">Источник: AniLiberty API v1</p>
+        </section>
     </main>
 
-    <!-- Кнопка для перехода в Telegram -->
-    <div class="telegram-container">
-        <button class="telegram-btn" id="telegramBtn">
-            <svg class="telegram-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.447 1.394c-.14.14-.26.26-.534.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.652-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-            </svg>
-            Наш Telegram канал
-        </button>
-    </div>
-
+    <!-- ПОДВАЛ -->
     <footer>
-        © 2025 AniWatch - Все права защищены
+        <p>AniWatch.ru — неофициальный клиент AniLiberty API. Все права принадлежат правообладателям.</p>
     </footer>
-</div>
 
-<script>
-    // Массив с данными об аниме
-    const animeList = [
-        {
-            btnname: "Мой братик больше не братик!",
-            previewUrl: "static/pages/Onimai/onimai.jpg",
-            scene: "static/pages/Onimai/onimai.html"
-        },
-        {
-            btnname: "Реинкарнация безработного",
-            previewUrl: "static/pages/Mushoku-Tensei/mushoku.jpg",
-            scene: "static/pages/Mushoku-Tensei/mushoku.html"
-        },
-        {
-            btnname: "Хроники Акаши",
-            previewUrl: "static/pages/Akashic-records/akashi.jpeg",
-            scene: "static/pages/Akashic-records/akashi.html"
-        },
-        {
-            btnname: "Создатель Магии в ином мире",
-            previewUrl: "static/pages/Magic-creator/magic.jpg",
-            scene: "static/pages/Magic-creator/magic.html"
-        },
-        {
-            btnname: "Добро пожаловать в N.H.K",
-            previewUrl: "static/pages/Welcome-to-NHK/nhk.jpg",
-            scene: "static/pages/Welcome-to-NHK/nhk.html"
-        },
-        {
-            btnname: "Девочка Волшебница Мадока-Магика",
-            previewUrl: "static/pages/Madoka/madoka.jpg",
-            scene: "static/pages/Madoka/madoka.html"
-        },
-        {
-            btnname: "Созданный в бездне 1 сезон",
-            previewUrl: "static/pages/Made-in-abyss/abyss.jpg",
-            scene: "static/pages/Made-in-abyss/abyss.html"
-        },
-        {
-            btnname: "Кошачий рай",
-            previewUrl: "static/pages/Nekopara/nekopara.webp",
-            scene: "static/pages/Nekopara/nekopara.html"
-        },
-        {
-            btnname: "Сайт девочек волшебниц",
-            previewUrl: "static/pages/Magic-girls/magic-girls.webp",
-            scene: "static/pages/Magic-girls/magic-girls.html"
-        },
-        {
-            btnname: "В другом мире со смартфоном",
-            previewUrl: "static/pages/Another-world-with-smartphone/another.jpg",
-            scene: "static/pages/Another-world-with-smartphone/another.html"
-        },
-        {
-            btnname: "Форма голоса",
-            previewUrl: "static/pages/Voice-Form/voice-form.jpg",
-            scene: "static/pages/Voice-Form/voice-form.html"
-        },
-        {
-            btnname: "Твоё имя",
-            previewUrl: "static/pages/Your-name/name.jpg",
-            scene: "static/pages/Your-name/name.html"
-        },
-        {
-            btnname: "Коносуба: Багровая легенда",
-            previewUrl: "static/pages/Konosuba-film/konosuba-film.jpg",
-            scene: "static/pages/Konosuba-film/konosuba-film.html"
-        },
-    ];
-
-    // Функция для создания карточек аниме
-    function createAnimeCards(filteredAnimeList = animeList) {
-        const animeGrid = document.getElementById('animeGrid');
-        animeGrid.innerHTML = '';
-
-        if (filteredAnimeList.length === 0) {
-            animeGrid.innerHTML = '<div class="no-results">По вашему запросу ничего не найдено</div>';
-            return;
-        }
-
-        filteredAnimeList.forEach(anime => {
-            const card = document.createElement('div');
-            card.className = 'anime-card';
-
-            card.innerHTML = `
-          <img src="${anime.previewUrl}" alt="${anime.btnname}" class="anime-preview" onerror="this.src='https://via.placeholder.com/300x400/0a1120/64ffda?text=Превью+не+доступно'">
-          <button class="anime-btn" onclick="navigateTo('${anime.scene}'); e.stopPropagation();" style="height: 60px; display: flex; align-items: center; justify-content: center;">${anime.btnname}</button>
-        `;
-
-            // Добавляем обработчик клика на всю карточку
-            card.addEventListener('click', (e) => {
-                // Проверяем, что клик не по кнопке
-                if (!e.target.classList.contains('anime-btn')) {
-                    navigateTo(anime.scene);
-                }
-            });
-
-            animeGrid.appendChild(card);
-        });
-    }
-
-    // Функция для перехода на страницу аниме
-    function navigateTo(scene) {
-        window.location.href = scene;
-    }
-
-    // Функция для перехода в Telegram
-    function goToTelegram() {
-        // Замените ссылку на актуальную ссылку вашего Telegram канала
-        window.open('https://t.me/AniWatchRU', '_blank');
-    }
-
-    // Функция для поиска аниме
-    function searchAnime() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-
-        if (searchTerm === '') {
-            createAnimeCards();
-            return;
-        }
-
-        const filteredAnime = animeList.filter(anime =>
-            anime.btnname.toLowerCase().includes(searchTerm)
-        );
-
-        createAnimeCards(filteredAnime);
-    }
-
-    // Инициализация при загрузке страницы
-    document.addEventListener('DOMContentLoaded', () => {
-        createAnimeCards();
-
-        // Добавляем обработчики событий для поиска
-        document.getElementById('searchBtn').addEventListener('click', searchAnime);
-        document.getElementById('searchInput').addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                searchAnime();
-            }
-        });
-
-        // Добавляем обработчик для кнопки Telegram
-        document.getElementById('telegramBtn').addEventListener('click', goToTelegram);
-    });
-</script>
+    <script src="app.js"></script>
 </body>
 </html>
