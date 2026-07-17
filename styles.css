@@ -1,0 +1,323 @@
+/* ===== ОБЩИЕ СТИЛИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0b0b1a;
+    color: #eee;
+    min-height: 100vh;
+}
+
+/* ===== ШАПКА ===== */
+header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 2px solid #e94560;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.logo i {
+    color: #e94560;
+    margin-right: 8px;
+}
+
+.logo span {
+    color: #e94560;
+}
+
+.search-box {
+    display: flex;
+    background: #1e1e3a;
+    border-radius: 30px;
+    padding: 5px 15px;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+
+.search-box:focus-within {
+    border-color: #e94560;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.3);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    padding: 10px 10px;
+    color: #fff;
+    font-size: 16px;
+    width: 250px;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: #666;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    color: #e94560;
+}
+
+/* ===== ОСНОВНАЯ ЧАСТЬ ===== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title i {
+    color: #e94560;
+}
+
+/* ===== СЕТКА КАРТОЧЕК ===== */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.anime-card {
+    background: #16162e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #2a2a4a;
+}
+
+.anime-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(233, 69, 96, 0.2);
+    border-color: #e94560;
+}
+
+.anime-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    background: #1a1a30;
+}
+
+.anime-card .info {
+    padding: 15px;
+}
+
+.anime-card .info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.anime-card .info .meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #999;
+}
+
+.anime-card .info .meta span {
+    background: #25254a;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.status-badge {
+    display: inline-block;
+    font-size: 12px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 8px;
+    background: #2a2a5a;
+}
+
+.status-badge.ongoing {
+    background: #1b5e3a;
+    color: #8bffb0;
+}
+
+.status-badge.released {
+    background: #5e2a2a;
+    color: #ff8b8b;
+}
+
+.status-badge.unknown {
+    background: #3a3a3a;
+    color: #aaa;
+}
+
+/* ===== ПЛЕЕР ===== */
+.player-section {
+    background: #111128;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 30px;
+    border: 1px solid #2a2a4a;
+    display: none;
+}
+
+.player-section.active {
+    display: block;
+}
+
+.player-section h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.player-section .episode-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.player-section .episode-list button {
+    background: #1e1e3a;
+    border: none;
+    color: #ddd;
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid #333;
+}
+
+.player-section .episode-list button:hover,
+.player-section .episode-list button.active {
+    background: #e94560;
+    color: #fff;
+    border-color: #e94560;
+}
+
+.player-source {
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+    margin-top: 15px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ===== ЛОАДЕР ===== */
+.loader {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+    color: #888;
+}
+
+.loader i {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 20px;
+    color: #e94560;
+}
+
+/* ===== ПОДВАЛ ===== */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #555;
+    border-top: 1px solid #1a1a30;
+    margin-top: 30px;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .search-box input {
+        width: 180px;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .anime-card img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .search-box input {
+        width: 130px;
+        font-size: 14px;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+    }
+
+    .anime-card img {
+        height: 170px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+}
