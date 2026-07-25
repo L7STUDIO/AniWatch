@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Страница временно не доступна</title>
+    <title>Сайт больше не доступен</title>
     <style>
         * {
             margin: 0;
@@ -38,12 +38,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .icon-wrapper i {
-            font-size: 36px;
-            color: #666;
-            opacity: 0.6;
         }
 
         .icon-wrapper svg {
@@ -89,17 +83,19 @@
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: #555;
+            background: #ff4d4d;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%,
             100% {
-                background: #555;
+                background: #ff4d4d;
+                opacity: 0.4;
             }
             50% {
-                background: #999;
+                background: #ff4d4d;
+                opacity: 1;
             }
         }
 
@@ -156,19 +152,20 @@
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="8" x2="12" y2="13"/>
                 <circle cx="12" cy="16.5" r="1.2" fill="#666" stroke="none"/>
+                <line x1="4" y1="4" x2="20" y2="20"/>
             </svg>
         </div>
 
-        <h1>Ой, страница временно не доступна</h1>
+        <h1>Ой, сайт больше не доступен :(</h1>
 
         <p class="subtitle">
-            Мы уже работаем над тем, чтобы всё вернуть.<br>
-            Пожалуйста, загляните позже.
+            К сожалению, мы не можем продолжить работу из-за нарушения авторских прав.<br>
+            Спасибо, что были с нами.
         </p>
 
         <div class="status-badge">
             <span class="status-dot"></span>
-            Сервис приостановлен
+            Сервис закрыт
         </div>
 
         <div class="divider"></div>
@@ -180,7 +177,7 @@
             Вернуться назад
         </a>
 
-        <p class="footer-text" style="margin-top: 20px;">• обновление •</p>
+        <p class="footer-text" style="margin-top: 20px;"></p>
     </div>
 </body>
 </html>
